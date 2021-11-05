@@ -22,11 +22,14 @@ jobs:
           dotnet-version: '3.1.301'
           include-prerelease: true
 
+      - name: Wherea are we
+        run: pwd
+
       - name: Build with dotnet
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/BlazorOnAzure/src
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}\BlazorOnAzure\src
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
