@@ -1,9 +1,30 @@
 ﻿@page "/"
 
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
 <h1>Hello, Auxx!</h1>
+
+<p>@mos in the</p>
 
 <div>
     <img src="images/the_duke.jpg"/>
 </div>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+
+@code {
+
+    private string mos = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        mos = @Configuration["auxx-mos"];
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        mos = @Configuration["auxx-mos"];
+    }
+}

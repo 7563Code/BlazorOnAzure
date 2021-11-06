@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
 namespace BlazorTest
 {
@@ -20,6 +21,16 @@ namespace BlazorTest
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddAzureAppConfiguration(options =>
+                    {
+                        var azureAppConfigConnectionString =
+                            hostingContext.Configuration["AzureAppConfigConnectionString"];
+                        options
+                            .Connect(azureAppConfigConnectionString);
+                    });
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
