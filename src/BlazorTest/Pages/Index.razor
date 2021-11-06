@@ -5,7 +5,8 @@
 
 <h1>Hello, Auxx!</h1>
 
-<p>@mos in the</p>
+<p>@mos</p>
+<p>@whereAmI</p>
 
 <div>
     <img src="images/the_duke.jpg"/>
@@ -17,10 +18,12 @@
 @code {
 
     private string mos = string.Empty;
+    private string whereAmI = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
-        mos = $"{@Configuration["auxx-mos"]} - {Configuration["ApplicationName"]}";
+        mos = $"{@Configuration["auxx-mos"]} - {Configuration["ApplicationName"]} - ConfigurationContext: {Configuration["ConfigurationContext"]}";
+        whereAmI = @Configuration["WhereAmI"];
     }
 
     //protected override async Task OnParametersSetAsync()
