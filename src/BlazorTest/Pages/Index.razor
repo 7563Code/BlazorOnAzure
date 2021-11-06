@@ -20,11 +20,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        mos = @Configuration["auxx-mos"];
+        mos = $"{@Configuration["auxx-mos"]} - {Configuration["ApplicationName"]}";
     }
 
-    protected override async Task OnParametersSetAsync()
-    {
-        mos = @Configuration["auxx-mos"];
-    }
+    //protected override async Task OnParametersSetAsync()
+    //{
+    //    mos = @Configuration["auxx-mos"];
+    //}
 }
