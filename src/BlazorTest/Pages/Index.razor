@@ -30,7 +30,7 @@
     {
         var appSettings = AppSettings.Value;
 
-        appName = appSettings.ApplicationName;
+        appName = $"{appSettings.ApplicationName} - {appSettings.Slot}";
 
         mos = $"{@Configuration["auxx-mos"]} - {Configuration["ApplicationName"]} - ConfigurationContext: {Configuration["ConfigurationContext"]}";
         whereAmI = @Configuration["WhereAmI"];
