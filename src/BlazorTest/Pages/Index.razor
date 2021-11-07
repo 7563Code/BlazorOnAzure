@@ -1,12 +1,17 @@
 ﻿@page "/"
 
 @using Microsoft.Extensions.Configuration
+@using Microsoft.Extensions.Options
+@using BlazorTest.Models
+
 @inject IConfiguration Configuration
+@inject IOptions<AppSettingsOptions> AppSettings
 
 <h1>Hello, Auxx!</h1>
 
 <p>@mos</p>
 <p>@whereAmI</p>
+<p>@appName</p>
 
 <div>
     <img src="images/the_duke.jpg"/>
@@ -19,11 +24,17 @@
 
     private string mos = string.Empty;
     private string whereAmI = string.Empty;
+    private string appName = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
+        var appSettings = AppSettings.Value;
+
+        appName = appSettings.ApplicationName;
+
         mos = $"{@Configuration["auxx-mos"]} - {Configuration["ApplicationName"]} - ConfigurationContext: {Configuration["ConfigurationContext"]}";
         whereAmI = @Configuration["WhereAmI"];
+
     }
 
     //protected override async Task OnParametersSetAsync()
